@@ -133,9 +133,12 @@ class SFLGA(BaseLearner):
         
         Privacy constraint: l_t >= l_min where l_min ensures ε-local DP
         """
+        # Apply bounds constraint (must be within valid range for the model)
+        new_cut_layer = max(new_cut_layer, self.min_cut_layer)
+        new_cut_layer = min(new_cut_layer, self.max_cut_layer)
+        
         # Apply privacy constraint
         new_cut_layer = max(new_cut_layer, self._get_min_privacy_layer())
-        new_cut_layer = min(new_cut_layer, self.max_cut_layer)
         
         if new_cut_layer == self.cut_layer:
             return

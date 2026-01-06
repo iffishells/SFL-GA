@@ -21,9 +21,9 @@ federated:
   
 # Split Learning settings
 split:
-  initial_cut_layer: 5  # Initial cutting point
+  initial_cut_layer: 3  # Initial cutting point
   min_cut_layer: 1
-  max_cut_layer: 8
+  max_cut_layer: 5  # VGG11 supports cut layers 1-5
 
 # SFL-GA specific settings
 sfl_ga:
@@ -33,7 +33,7 @@ sfl_ga:
 # DDQN settings
 ddqn:
   state_dim: 20
-  action_dim: 8  # Number of possible cut layers
+  action_dim: 5  # Number of possible cut layers (must match max_cut_layer)
   hidden_dim: 128
   learning_rate: 0.001
   gamma: 0.99
