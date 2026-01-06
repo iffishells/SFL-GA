@@ -1,0 +1,76 @@
+# SFL-GA Configuration
+
+# Dataset settings
+dataset:
+  name: "cifar10"  # cifar10, cifar100, mnist
+  num_classes: 10
+  data_path: "./data"
+  
+# Model settings
+model:
+  name: "vgg11"  # vgg11, resnet18
+  pretrained: false
+
+# Federated Learning settings
+federated:
+  num_clients: 10
+  clients_per_round: 5
+  num_rounds: 500
+  local_epochs: 5
+  batch_size: 64
+  
+# Split Learning settings
+split:
+  initial_cut_layer: 5  # Initial cutting point
+  min_cut_layer: 1
+  max_cut_layer: 8
+
+# SFL-GA specific settings
+sfl_ga:
+  gradient_aggregation: true
+  dynamic_splitting: true
+  
+# DDQN settings
+ddqn:
+  state_dim: 20
+  action_dim: 8  # Number of possible cut layers
+  hidden_dim: 128
+  learning_rate: 0.001
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.01
+  epsilon_decay: 0.995
+  buffer_size: 10000
+  batch_size: 64
+  target_update: 10
+
+# Communication settings
+communication:
+  bandwidth: 10  # Mbps
+  upload_rate: 5  # Mbps
+  download_rate: 10  # Mbps
+  
+# Computation settings
+computation:
+  client_cpu_freq: 2.0  # GHz
+  server_cpu_freq: 4.0  # GHz
+  cycles_per_sample: 1000000  # Use integer instead of 1e6
+
+# Training settings
+training:
+  learning_rate: 0.01
+  momentum: 0.9
+  weight_decay: 0.0001  # Use decimal instead of 1e-4 for YAML compatibility
+  
+# GPU settings
+gpu:
+  enabled: true
+  device_ids: [1]  # Use GPU 0 and 1
+  primary_device: 1   # Primary GPU for single-GPU operations
+
+# Experiment settings
+experiment:
+  seed: 42
+  save_path: "./results"
+  log_interval: 10
+
